@@ -1,9 +1,11 @@
-import { Input } from "@heroui/input";
+import Landing from "@/srccomponents/modules/home/Landing";
+import RecentPosts from "@/srccomponents/modules/home/RecentPosts";
 
 export default function Home() {
   return (
-    <div className="h-[calc(100vh-64px)] bg-[url('/glasss.jpg')] bg-cover bg-center">
-      <Input />
-    </div>
+    <>
+      <Landing />
+      <RecentPosts />
+    </>
   );
 }
