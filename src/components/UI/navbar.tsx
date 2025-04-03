@@ -8,15 +8,14 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@heroui/navbar";
-
 import { Link } from "@heroui/link";
 import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
-
 import { siteConfig } from "@/src/config/site";
 import { ThemeSwitch } from "@/srccomponents/UI/theme-switch";
 import { Logo } from "@/src/components/icons";
+import NavbarDropdown from "./NavbarDropdown";
 
 export const Navbar = () => {
   return (
@@ -52,9 +51,15 @@ export const Navbar = () => {
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
+
+        <NavbarItem className="hidden sm:flex gap-2">
+          <NavbarDropdown />
+        </NavbarItem>
       </NavbarContent>
+
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
+        <NavbarDropdown />
         <NavbarMenuToggle />
       </NavbarContent>
       <NavbarMenu>
