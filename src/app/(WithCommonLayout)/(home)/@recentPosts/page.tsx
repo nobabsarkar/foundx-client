@@ -2,6 +2,7 @@
 import Card from "@/srccomponents/UI/Card";
 import Container from "@/srccomponents/UI/Container";
 import { getRecentPosts } from "@/srcservices/RecentPosts";
+import { IPost } from "@/srctypes";
 import { Button } from "@heroui/button";
 import Link from "next/link";
 
@@ -17,8 +18,8 @@ const RecentPosts = async () => {
         </p>
       </div>
       <div className="my-8 grid justify-center gap-10 sm:grid-cols-1 md:grid-cols-4">
-        {posts.map((post: any) => (
-          <Card key={post.id} post={post} />
+        {posts.map((post: IPost) => (
+          <Card key={post._id} post={post} />
         ))}
       </div>
       <div className="flex justify-center">
