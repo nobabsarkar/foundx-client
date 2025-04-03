@@ -1,4 +1,5 @@
 /* eslint-disable import/order */
+import Card from "@/srccomponents/UI/Card";
 import Container from "@/srccomponents/UI/Container";
 import { getRecentPosts } from "@/srcservices/RecentPosts";
 import { Button } from "@heroui/button";
@@ -6,7 +7,6 @@ import Link from "next/link";
 
 const RecentPosts = async () => {
   const { data: posts } = await getRecentPosts();
-  console.log(posts);
 
   return (
     <Container>
@@ -17,8 +17,8 @@ const RecentPosts = async () => {
         </p>
       </div>
       <div className="my-8 grid justify-center gap-10 sm:grid-cols-1 md:grid-cols-4">
-        {posts.map((item) => (
-          <p key={item.key}>{item.title}</p>
+        {posts.map((post: any) => (
+          <Card key={post.id} post={post} />
         ))}
       </div>
       <div className="flex justify-center">
