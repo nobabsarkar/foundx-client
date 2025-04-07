@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/jsx-sort-props */
 /* eslint-disable import/order */
 "use client";
@@ -11,6 +12,7 @@ import loginValidationSchema from "@/srcschemas/login.schema";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const LoginPage = () => {
+  // login
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
   };
