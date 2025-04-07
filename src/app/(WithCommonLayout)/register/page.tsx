@@ -9,7 +9,7 @@ import registerValidationSchema from "@/srcschemas/register.schema";
 import { Button } from "@heroui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const RegisterPage = () => {
