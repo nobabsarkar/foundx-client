@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 /* eslint-disable react/jsx-sort-props */
 "use client";
 
@@ -9,6 +10,7 @@ import {
 } from "@heroui/dropdown";
 import { Avatar } from "@heroui/avatar";
 import { useRouter } from "next/navigation";
+import { logout } from "@/srcservices/AuthService";
 
 const NavbarDropdown = () => {
   const router = useRouter();
@@ -45,7 +47,12 @@ const NavbarDropdown = () => {
             Create Post
           </DropdownItem>
 
-          <DropdownItem key="delete" className="text-danger" color="danger">
+          <DropdownItem
+            onClick={() => logout()}
+            key="logout"
+            className="text-danger"
+            color="danger"
+          >
             Logout
           </DropdownItem>
         </DropdownMenu>
