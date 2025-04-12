@@ -23,8 +23,6 @@ import { useUser } from "@/srccontext/user.provider";
 export const Navbar = () => {
   const { user, isLoading } = useUser();
 
-  console.log(user, isLoading);
-
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
