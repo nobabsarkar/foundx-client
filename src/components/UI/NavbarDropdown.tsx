@@ -11,19 +11,30 @@ import {
 import { Avatar } from "@heroui/avatar";
 import { useRouter } from "next/navigation";
 import { logout } from "@/srcservices/AuthService";
+import { useUser } from "@/srccontext/user.provider";
 
 const NavbarDropdown = () => {
   const router = useRouter();
+  const { user, setIsLoading: userLoading } = useUser();
 
   const handleNavigation = (pathname: string) => {
     router.push(pathname);
+  };
+
+  const handleLogout = () => {
+    logout();
+    userLoading(true);
   };
 
   return (
     <div>
       <Dropdown>
         <DropdownTrigger>
-          <Avatar className="cursor-pointer" name="Joe" />
+          <Avatar
+            className="cursor-pointer"
+            // name="Joe"
+            src={user?.profilePhoto}
+          />
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">
           <DropdownItem
@@ -48,7 +59,7 @@ const NavbarDropdown = () => {
           </DropdownItem>
 
           <DropdownItem
-            onClick={() => logout()}
+            onClick={() => handleLogout()}
             key="logout"
             className="text-danger"
             color="danger"

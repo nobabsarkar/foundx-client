@@ -21,7 +21,9 @@ import NavbarDropdown from "./NavbarDropdown";
 import { useUser } from "@/srccontext/user.provider";
 
 export const Navbar = () => {
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
+
+  console.log(user, isLoading);
 
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
@@ -70,9 +72,10 @@ export const Navbar = () => {
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
-        <NavbarDropdown />
+        {user?.email ? <NavbarDropdown /> : <Link href="/login">Login</Link>}
         <NavbarMenuToggle />
       </NavbarContent>
+
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
