@@ -19,6 +19,7 @@ import { ThemeSwitch } from "@/srccomponents/UI/theme-switch";
 import { Logo } from "@/src/components/icons";
 import NavbarDropdown from "./NavbarDropdown";
 import { useUser } from "@/srccontext/user.provider";
+import { Button } from "@heroui/button";
 
 export const Navbar = () => {
   const { user, isLoading } = useUser();
@@ -63,14 +64,26 @@ export const Navbar = () => {
           </NavbarItem>
         ) : (
           <NavbarItem className="hidden sm:flex gap-2">
-            <Link href="/login">Login</Link>
+            <Button>
+              <Link className="text-white" href="/login">
+                Login
+              </Link>
+            </Button>
           </NavbarItem>
         )}
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
-        {user?.email ? <NavbarDropdown /> : <Link href="/login">Login</Link>}
+        {user?.email ? (
+          <NavbarDropdown />
+        ) : (
+          <Button>
+            <Link className="text-white" href="/login">
+              Login
+            </Link>
+          </Button>
+        )}
         <NavbarMenuToggle />
       </NavbarContent>
 

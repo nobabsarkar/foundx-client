@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-sort-props */
 /* eslint-disable import/order */
 "use client";
 import { Button } from "@nextui-org/button";
@@ -5,6 +6,7 @@ import Link from "next/link";
 import { useUser } from "@/src/context/user.provider";
 import { SidebarOptions } from "./SidebarOption";
 import { adminLinks, userLinks } from "./constant";
+import Image from "next/image";
 
 const Sidebar = () => {
   const { user } = useUser();
@@ -13,11 +15,17 @@ const Sidebar = () => {
     <div>
       <div className="rounded-xl bg-default-100 p-2">
         <div className="h-[330px] w-full rounded-md">
-          <h1>Ekhane user er profile picture hobe</h1>
+          {/* <h1>Ekhane user er profile picture hobe</h1> */}
+          <Image
+            height={100}
+            width={100}
+            src={user?.profilePhoto || "/default profile photo"}
+            alt="profile"
+          />
         </div>
         <div className="my-3">
-          <h1 className="text-2xl font-semibold">Mofiz</h1>
-          <p className="break-words text-sm">mofiz@gmail.com</p>
+          <h1 className="text-2xl font-semibold">Nobab Sarkar</h1>
+          <p className="break-words text-sm">nobab@gmail.com</p>
         </div>
         <Button
           as={Link}

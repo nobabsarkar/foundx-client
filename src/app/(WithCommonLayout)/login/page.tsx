@@ -57,7 +57,7 @@ const LoginPage = () => {
             </div>
 
             <Button
-              className="my-3 w-full rounded-md bg-default-900 font-semibold text-default"
+              className="my-3  w-full rounded-md bg-default-900 font-semibold text-default"
               size="lg"
               type="submit"
             >
