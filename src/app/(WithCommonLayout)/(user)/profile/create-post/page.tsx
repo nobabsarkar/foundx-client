@@ -20,6 +20,9 @@ import {
   useFieldArray,
   useForm,
 } from "react-hook-form";
+import { useGetCategories } from "@/srchooks/categories.hook";
+import FXTextarea from "@/srccomponents/form/FXTextArea";
+import { ChangeEvent, useState } from "react";
 
 const cityOptions = allDistict()
   .sort()
@@ -31,6 +34,27 @@ const cityOptions = allDistict()
   });
 
 const CreatePost = () => {
+  const [imageFiles, setImageFiles] = useState<File[] | []>([]);
+
+  console.log(imageFiles);
+
+  const {
+    data: categoriesData,
+    isLoading: categoryLoading,
+    isSuccess: categorySuccess,
+  } = useGetCategories();
+
+  let categoryOption: { key: string; label: string }[] = [];
+
+  if (categoriesData?.data && !categoryLoading) {
+    categoryOption = categoriesData?.data
+      ?.sort()
+      .map((category: { _id: string; name: string }) => ({
+        key: category._id,
+        label: category.name,
+      }));
+  }
+
   const methods = useForm();
   const { control, handleSubmit } = methods;
 
@@ -50,6 +74,12 @@ const CreatePost = () => {
 
   const handleFieldAppend = () => {
     append({ name: "questions" });
+  };
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files![0];
+
+    setImageFiles((prev) => [...prev, file]);
   };
 
   return (
@@ -106,12 +136,12 @@ const CreatePost = () => {
             </div>
             <div className="flex flex-wrap gap-2 py-2">
               <div className="min-w-fit flex-1">
-                {/* <FXSelect
+                <FXSelect
                   disabled={!categorySuccess}
                   label="Category"
                   name="category"
                   options={categoryOption}
-                /> */}
+                />
               </div>
               <div className="min-w-fit flex-1">
                 <label
@@ -125,14 +155,14 @@ const CreatePost = () => {
                   className="hidden"
                   id="image"
                   type="file"
-                  // onChange={(e) => handleImageChange(e)}
+                  onChange={(e) => handleImageChange(e)}
                 />
               </div>
             </div>
 
             <div className="flex flex-wrap-reverse gap-2 py-2">
               <div className="min-w-fit flex-1">
-                {/* <FXTextarea label="Description" name="description" /> */}
+                <FXTextarea label="Description" name="description" />
               </div>
             </div>
 
@@ -140,22 +170,24 @@ const CreatePost = () => {
 
             <div className="flex justify-between items-center mb-5">
               <h1 className="text-xl">Owner verification questions</h1>
-              {/* <Button isIconOnly onClick={() => handleFieldAppend()}>
-                <AddIcon />
-              </Button> */}
+              <Button isIconOnly onClick={() => handleFieldAppend()}>
+                Append
+                {/* <AddIcon /> */}
+              </Button>
             </div>
 
             <div className="space-y-5">
               {fields.map((field, index) => (
                 <div key={field.id} className="flex gap-2 items-center">
                   <FXInput label="Question" name={`questions.${index}.value`} />
-                  {/* <Button
+                  <Button
                     isIconOnly
                     className="h-14 w-16"
                     onClick={() => remove(index)}
                   >
-                    <TrashIcon />
-                  </Button> */}
+                    Remove
+                    {/* <TrashIcon /> */}
+                  </Button>
                 </div>
               ))}
             </div>

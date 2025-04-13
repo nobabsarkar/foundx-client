@@ -8,6 +8,7 @@ interface IProps extends IInput {
     key: string;
     label: string;
   }[];
+  disabled?: boolean;
 }
 
 export default function FXSelect({
@@ -15,18 +16,15 @@ export default function FXSelect({
   name,
   label,
   variant = "bordered",
-  // disabled,
+  disabled,
 }: IProps) {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+  const { register } = useFormContext();
 
   return (
     <Select
       {...register(name)}
       className="min-w-full sm:min-w-[225px]"
-      // isDisabled={disabled}
+      isDisabled={disabled}
       label={label}
       variant={variant}
     >
