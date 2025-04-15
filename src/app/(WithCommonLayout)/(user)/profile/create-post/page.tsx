@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable no-console */
 /* eslint-disable padding-line-between-statements */
 /* eslint-disable react/jsx-sort-props */
@@ -23,6 +24,8 @@ import {
 import { useGetCategories } from "@/srchooks/categories.hook";
 import FXTextarea from "@/srccomponents/form/FXTextArea";
 import { ChangeEvent, useState } from "react";
+import { AddIcon, TrashIcon } from "@/srcassets/icons";
+import { useUser } from "@/srccontext/user.provider";
 
 const cityOptions = allDistict()
   .sort()
@@ -35,8 +38,9 @@ const cityOptions = allDistict()
 
 const CreatePost = () => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
+  const [imagePreviews, setImagePreviews] = useState<string[] | []>([]);
 
-  console.log(imageFiles);
+  const { user } = useUser();
 
   const {
     data: categoriesData,
@@ -64,12 +68,23 @@ const CreatePost = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const formData = new FormData();
+
     const postData = {
       ...data,
       questions: data.questions.map((que: { value: string }) => que.value),
       dateFound: dateToISO(data.dateFound),
+      user: user!._id,
     };
-    console.log(postData);
+
+    formData.append("data", JSON.stringify(postData));
+
+    for (let image of imageFiles) {
+      formData.append("itemImages", image);
+    }
+
+    console.log(formData.get("data"));
+    console.log(formData.get("itemImages"));
   };
 
   const handleFieldAppend = () => {
@@ -80,6 +95,16 @@ const CreatePost = () => {
     const file = e.target.files![0];
 
     setImageFiles((prev) => [...prev, file]);
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        setImagePreviews((prev) => [...prev, reader.result as string]);
+      };
+
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
@@ -160,6 +185,26 @@ const CreatePost = () => {
               </div>
             </div>
 
+            <div>
+              <div className="flex gap-5 my-5 flex-wrap">
+                {imagePreviews?.length > 0 &&
+                  imagePreviews?.map((imageDataUrl) => (
+                    <div
+                      key={imageDataUrl}
+                      className="relative h-48 w-48 rounded-xl border-2 border-dashed border-default-300 p-2"
+                    >
+                      <img
+                        className="w-full h-full object-cover object-center rounded-md"
+                        src={imageDataUrl}
+                        alt="item"
+                      />
+                    </div>
+                  ))}
+              </div>
+            </div>
+
+            {/* <Divider className="my-5" /> */}
+
             <div className="flex flex-wrap-reverse gap-2 py-2">
               <div className="min-w-fit flex-1">
                 <FXTextarea label="Description" name="description" />
@@ -171,8 +216,7 @@ const CreatePost = () => {
             <div className="flex justify-between items-center mb-5">
               <h1 className="text-xl">Owner verification questions</h1>
               <Button isIconOnly onClick={() => handleFieldAppend()}>
-                Append
-                {/* <AddIcon /> */}
+                <AddIcon />
               </Button>
             </div>
 
@@ -185,8 +229,7 @@ const CreatePost = () => {
                     className="h-14 w-16"
                     onClick={() => remove(index)}
                   >
-                    Remove
-                    {/* <TrashIcon /> */}
+                    <TrashIcon />
                   </Button>
                 </div>
               ))}
