@@ -80,6 +80,8 @@ const CreatePost = () => {
       user: user!._id,
     };
 
+    console.log(postData);
+
     formData.append("data", JSON.stringify(postData));
 
     for (let image of imageFiles) {

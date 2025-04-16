@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable import/order */
+
 import { createPost } from "@/srcservices/post";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";

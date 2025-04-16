@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import { SearchIcon } from "@/srccomponents/icons";
 import { Input } from "@heroui/input";
 import React from "react";
