@@ -1,3 +1,5 @@
+"use server";
+
 import axiosInstance from "@/srclib/AxiosInstance";
 
 export const getCategories = async () => {

@@ -26,6 +26,7 @@ import FXTextarea from "@/srccomponents/form/FXTextArea";
 import { ChangeEvent, useState } from "react";
 import { AddIcon, TrashIcon } from "@/srcassets/icons";
 import { useUser } from "@/srccontext/user.provider";
+import { useCreatePost } from "@/srchooks/post.hook";
 
 const cityOptions = allDistict()
   .sort()
@@ -39,6 +40,8 @@ const cityOptions = allDistict()
 const CreatePost = () => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreviews, setImagePreviews] = useState<string[] | []>([]);
+
+  const { mutate: handleCreatePost } = useCreatePost();
 
   const { user } = useUser();
 
@@ -83,8 +86,7 @@ const CreatePost = () => {
       formData.append("itemImages", image);
     }
 
-    console.log(formData.get("data"));
-    console.log(formData.get("itemImages"));
+    handleCreatePost(formData);
   };
 
   const handleFieldAppend = () => {
