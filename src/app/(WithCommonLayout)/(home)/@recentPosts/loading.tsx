@@ -1,4 +1,8 @@
+/* eslint-disable @next/next/no-async-client-component */
 /* eslint-disable import/order */
+
+// "use client";
+
 import CardSkeleton from "@/srccomponents/UI/CardSkeleton";
 import Container from "@/srccomponents/UI/Container";
 import { Button } from "@heroui/button";
@@ -14,7 +18,7 @@ const RecentPosts = async () => {
         </p>
       </div>
       <div className="my-8 grid justify-center gap-10 sm:grid-cols-1 md:grid-cols-3">
-        {[...Array(9)].map((index) => (
+        {[...Array(9)].map((_, index) => (
           <CardSkeleton key={index} />
         ))}
       </div>

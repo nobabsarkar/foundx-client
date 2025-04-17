@@ -27,6 +27,8 @@ import { ChangeEvent, useState } from "react";
 import { AddIcon, TrashIcon } from "@/srcassets/icons";
 import { useUser } from "@/srccontext/user.provider";
 import { useCreatePost } from "@/srchooks/post.hook";
+import Loading from "@/srccomponents/UI/Loading";
+import { useRouter } from "next/navigation";
 
 const cityOptions = allDistict()
   .sort()
@@ -41,7 +43,13 @@ const CreatePost = () => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreviews, setImagePreviews] = useState<string[] | []>([]);
 
-  const { mutate: handleCreatePost } = useCreatePost();
+  const router = useRouter();
+
+  const {
+    mutate: handleCreatePost,
+    isPending: createPostPending,
+    isSuccess,
+  } = useCreatePost();
 
   const { user } = useUser();
 
@@ -80,8 +88,6 @@ const CreatePost = () => {
       user: user!._id,
     };
 
-    console.log(postData);
-
     formData.append("data", JSON.stringify(postData));
 
     for (let image of imageFiles) {
@@ -111,37 +117,13 @@ const CreatePost = () => {
     }
   };
 
+  if (!createPostPending && isSuccess) {
+    router.push("/");
+  }
+
   return (
-    // <div>
-    //   <FormProvider {...methods}>
-    //     <form onSubmit={handleSubmit(onSubmit)}>
-    //       <FXInput name="title" label="Title" />
-
-    //       <Divider className="my-5" />
-
-    //       <div className="flex justify-between items-center">
-    //         <h1 className="text-xl">Owner Verification questions</h1>
-    //         <Button onClick={() => handleFieldAppend()}>Append</Button>
-    //       </div>
-
-    //       {fields.map((field, index) => (
-    //         <div key={field.id} className="flex items-center my-3">
-    //           <FXInput
-    //             key={field.id}
-    //             name={`questions.${index}.value`}
-    //             label="Question"
-    //           />
-    //           <Button onClick={() => remove(index)}>Remove</Button>
-    //         </div>
-    //       ))}
-
-    //       <Divider className="my-5" />
-
-    //       <Button type="submit">Post</Button>
-    //     </form>
-    //   </FormProvider>
-    // </div>
     <>
+      {createPostPending && <Loading />}
       <div className="h-full rounded-xl bg-gradient-to-b from-default-100 px-[73px] py-12">
         <h1 className="text-2xl font-semibold">Post a found item</h1>
         <Divider className="mb-5 mt-3" />

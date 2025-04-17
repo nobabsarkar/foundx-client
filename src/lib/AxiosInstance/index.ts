@@ -1,5 +1,7 @@
 /* eslint-disable import/order */
 
+// "use server";
+
 import envConfig from "@/srcconfig/env.config";
 import axios from "axios";
 import { cookies } from "next/headers";
