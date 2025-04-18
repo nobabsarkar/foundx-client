@@ -1,8 +1,17 @@
-const page = () => {
+import Container from "@/srccomponents/UI/Container";
+import Post from "@/srccomponents/UI/Post";
+import axiosInstance from "@/srclib/AxiosInstance";
+import { IPost } from "@/srctypes";
+
+const page = async () => {
+  const { data } = await axiosInstance("/items");
+
   return (
-    <div>
-      <h1>This is Found items component</h1>
-    </div>
+    <Container>
+      <div className="mx-auto my-3 max-w-[720px]">
+        {data?.data?.map((post: IPost) => <Post key={post?._id} post={post} />)}
+      </div>
+    </Container>
   );
 };
 
