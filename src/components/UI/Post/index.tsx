@@ -11,6 +11,7 @@ import { Calendar, MapPin } from "lucide-react";
 import Link from "next/link";
 import ImageGellery from "./ImageGellery";
 import ClaimRequestModal from "@/srccomponents/modals/ClaimRequestModal";
+import AuthenticationModal from "@/srccomponents/modals/AuthenticationModal";
 
 interface IProps {
   post: IPost;
@@ -70,9 +71,19 @@ const Post = ({ post }: IProps) => {
         <ImageGellery images={images} />
 
         <div className="mt-4 flex gap-5">
-          <ClaimRequestModal />
+          {email !== loggedInUser?.email && (
+            <>
+              {loggedInUser?.email && (
+                <ClaimRequestModal id={_id} questions={questions} />
+              )}
 
-          <div className="w-[1px] bg-default-200" />
+              {!loggedInUser?.email && <AuthenticationModal id={_id} />}
+            </>
+          )}
+
+          {email !== loggedInUser?.email && (
+            <div className="w-[1px] bg-default-200" />
+          )}
 
           <Button variant="light" className="flex-1">
             Share
