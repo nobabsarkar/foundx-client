@@ -6,6 +6,7 @@ import envConfig from "@/srcconfig/env.config";
 import axiosInstance from "@/srclib/AxiosInstance";
 import { revalidateTag } from "next/cache";
 
+// create post hook
 export const createPost = async (formData: FormData): Promise<any> => {
   try {
     const { data } = await axiosInstance.post("/items", formData, {
