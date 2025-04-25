@@ -1,7 +1,9 @@
+import RecivedClaimRequestsPage from "./recive-claim-requests/page";
+
 const page = () => {
   return (
     <div>
-      <h1>Profile</h1>
+      <RecivedClaimRequestsPage></RecivedClaimRequestsPage>
     </div>
   );
 };

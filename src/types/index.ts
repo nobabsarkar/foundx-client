@@ -55,3 +55,40 @@ export interface IInput {
   name: string;
   disabled?: boolean;
 }
+
+export interface IAnswer {
+  question: string;
+  answer: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export type TClaimRequest = {
+  _id: string;
+  item?: IPost;
+  claimant: string | IClaimant;
+  status: string;
+  description: string;
+  answers: IAnswer[];
+  feedback: string | null;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+};
+
+export interface IClaimant {
+  _id: string;
+  name: string;
+  role: "USER" | "ADMIN";
+  email: string;
+  status: "ACTIVE" | "INACTIVE";
+  mobileNumber: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  profilePhoto: string;
+}
+
+export interface IReceivedClaimRequest extends IPost {
+  claimRequests: TClaimRequest[];
+}

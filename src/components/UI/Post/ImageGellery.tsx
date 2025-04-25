@@ -20,7 +20,7 @@ import Image from "next/image";
 interface IProps {
   images: string[];
 }
-const ImageGellery = ({ images }: IProps) => {
+export const ImageGellery = ({ images }: IProps) => {
   return (
     <LightGallery
       elementClassNames={`mt-2 grid place-items-center gap-2  ${images.length === 1 ? "grid-cols-1" : "grid-cols-2"}`}
