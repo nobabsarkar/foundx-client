@@ -20,7 +20,7 @@ const ClaimRequestModal = ({ id, questions }: IProps) => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     const claimRequestData = {
       item: id,
-      description: data.description,
+      description: data?.description,
       answers: Object.keys(data)
         .filter((formElement) => formElement.startsWith("answer"))
         .map((answer) => data[answer]),
