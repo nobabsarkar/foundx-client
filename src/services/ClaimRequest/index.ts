@@ -24,6 +24,7 @@ export const getReceivedClaimRequest = async () => {
     const res = await axiosInstance.get(
       "/claim-request/received-claim-request"
     );
+
     return res.data;
   } catch (error) {
     console.log("Failed to fetch data:", error);

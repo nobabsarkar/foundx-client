@@ -54,7 +54,6 @@ const Post = ({ post }: IProps) => {
               </Link>
               <p className="flex items-center gap-1 text-xs">
                 Found on: <Calendar width={14} />
-                {/* Found on: <Calendar /> */}
                 {format(new Date(dateFound), "dd MMM, yyyy")}
               </p>
             </div>
