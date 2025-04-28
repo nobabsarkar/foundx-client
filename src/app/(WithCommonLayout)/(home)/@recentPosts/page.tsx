@@ -1,4 +1,5 @@
 /* eslint-disable import/order */
+
 import Card from "@/srccomponents/UI/Card";
 import Container from "@/srccomponents/UI/Container";
 import { getRecentPosts } from "@/srcservices/RecentPosts";
@@ -18,9 +19,7 @@ const RecentPosts = async () => {
         </p>
       </div>
       <div className="my-8 grid justify-center gap-10 sm:grid-cols-1 md:grid-cols-3">
-        {posts.map((post: IPost) => (
-          <Card key={post._id} post={post} />
-        ))}
+        {posts?.map((post: IPost) => <Card key={post._id} post={post} />)}
       </div>
       <div className="flex justify-center">
         <Button className="rounded-md bg-default-900 text-default">

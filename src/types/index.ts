@@ -92,3 +92,15 @@ export interface IClaimant {
 export interface IReceivedClaimRequest extends IPost {
   claimRequests: TClaimRequest[];
 }
+
+export interface IFeedbackStatus {
+  feedback: string;
+  status: string;
+}
+
+export interface ISearchResult {
+  title: string;
+  description: string;
+  thumbnail: string;
+  id: string;
+}

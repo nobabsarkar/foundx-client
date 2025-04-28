@@ -15,7 +15,7 @@ type TProps = {
 };
 
 export default function ClaimPostCard({ post }: TProps) {
-  const { claimRequests, claimant, item, description } = post || {};
+  const { claimant, item, description } = post || {};
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [answers, setAnswers] = useState({});
