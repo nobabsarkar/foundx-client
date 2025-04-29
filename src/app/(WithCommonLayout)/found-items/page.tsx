@@ -1,13 +1,23 @@
+import Filtering from "@/srccomponents/modules/found-items/Filtering";
 import Container from "@/srccomponents/UI/Container";
 import Post from "@/srccomponents/UI/Post";
 import axiosInstance from "@/srclib/AxiosInstance";
 import { IPost } from "@/srctypes";
 
-const page = async () => {
-  const { data } = await axiosInstance("/items");
+const FoundItems = async ({ searchParams }: { searchParams: any }) => {
+  const params = new URLSearchParams(searchParams);
+
+  // const { data } = await axiosInstance("/items");
+  const { data } = await axiosInstance(`/items`, {
+    params: {
+      searchTerm: params.get("query"),
+      category: params.get("category"),
+    },
+  });
 
   return (
     <Container>
+      <Filtering />
       <div className="mx-auto my-3 max-w-[720px]">
         {data?.data?.map((post: IPost) => <Post key={post?._id} post={post} />)}
       </div>
@@ -15,4 +25,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default FoundItems;

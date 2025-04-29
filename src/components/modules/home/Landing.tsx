@@ -19,11 +19,11 @@ const Landing = () => {
   const searchTerm = useDebounce(watch("search"));
   const router = useRouter();
 
-  // const handleSeeAll = (query: string) => {
-  //   const queryString = query.trim().split(" ").join("+");
+  const handleSeeAll = (query: string) => {
+    const queryString = query.trim().split(" ").join("+");
 
-  //   router.push(`/found-items?query=${queryString}`);
-  // };
+    router.push(`/found-items?query=${queryString}`);
+  };
 
   useEffect(() => {
     if (!searchTerm) {
@@ -90,14 +90,14 @@ const Landing = () => {
                 </Link>
               ))}
             </div>
-            {/* <div className="mt-3 flex justify-center border-t-1 border-default-50 pt-3">
+            <div className="mt-3 flex justify-center border-t-1 border-default-50 pt-3">
               <button
                 className="flex items-center justify-center gap-1"
                 onClick={() => handleSeeAll(searchTerm)}
               >
                 <span>See All</span>
               </button>
-            </div> */}
+            </div>
           </div>
         )}
       </div>
