@@ -7,9 +7,9 @@ import { IPost } from "@/srctypes";
 const FoundItems = async ({ searchParams }: { searchParams: any }) => {
   // const params = new URLSearchParams(searchParams);
 
-  const { data } = await axiosInstance("/items");
+  const { data } = await axiosInstance.get("/items");
 
-  // const { data } = await axiosInstance(`/items`, {
+  // const { data } = await axiosInstance.get(`/items`, {
   //   params: {
   //     searchTerm: params.get("query"),
   //     category: params.get("category"),
