@@ -5,15 +5,16 @@ import axiosInstance from "@/srclib/AxiosInstance";
 import { IPost } from "@/srctypes";
 
 const FoundItems = async ({ searchParams }: { searchParams: any }) => {
-  const params = new URLSearchParams(searchParams);
+  // const params = new URLSearchParams(searchParams);
 
-  // const { data } = await axiosInstance("/items");
-  const { data } = await axiosInstance(`/items`, {
-    params: {
-      searchTerm: params.get("query"),
-      category: params.get("category"),
-    },
-  });
+  const { data } = await axiosInstance("/items");
+
+  // const { data } = await axiosInstance(`/items`, {
+  //   params: {
+  //     searchTerm: params.get("query"),
+  //     category: params.get("category"),
+  //   },
+  // });
 
   return (
     <Container>
