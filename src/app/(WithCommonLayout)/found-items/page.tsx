@@ -1,3 +1,5 @@
+"use server";
+
 import Filtering from "@/srccomponents/modules/found-items/Filtering";
 import Container from "@/srccomponents/UI/Container";
 import Post from "@/srccomponents/UI/Post";
@@ -7,7 +9,7 @@ import { IPost } from "@/srctypes";
 const FoundItems = async ({ searchParams }: { searchParams: any }) => {
   // const params = new URLSearchParams(searchParams);
 
-  const { data } = await axiosInstance.get("/items");
+  // const { data } = await axiosInstance.get("/items");
 
   // const { data } = await axiosInstance.get(`/items`, {
   //   params: {
@@ -15,6 +17,14 @@ const FoundItems = async ({ searchParams }: { searchParams: any }) => {
   //     category: params.get("category"),
   //   },
   // });
+
+  const category = searchParams?.category || "";
+
+  const { data } = await axiosInstance.get("/items", {
+    params: {
+      category, // This sends category as a query param to your backend
+    },
+  });
 
   return (
     <Container>
