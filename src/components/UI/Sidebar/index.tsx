@@ -11,6 +11,7 @@ import Image from "next/image";
 
 const Sidebar = () => {
   const { user } = useUser();
+  console.log(user);
 
   return (
     <div>
@@ -25,8 +26,8 @@ const Sidebar = () => {
           />
         </div>
         <div className="my-3">
-          <h1 className="text-2xl font-semibold">Nobab Sarkar</h1>
-          <p className="break-words text-sm">nobab@gmail.com</p>
+          <h1 className="text-2xl font-semibold">{user?.name}</h1>
+          <p className="break-words text-sm">{user?.email}</p>
         </div>
         <Button
           as={Link}
