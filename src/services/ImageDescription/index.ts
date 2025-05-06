@@ -1,20 +1,19 @@
 "use server";
 
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// implement ai 
 const generateDescription = () => {
   const contents = [
-   { role:'user', parts:[
-    
-   ]}
+    {
+      role: "user",
+      parts: [],
+    },
   ];
 
-  const genAI = new GoogleGenAI(process.env.GEMINI_API_KEY as string);
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
+  const modal = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-  const model = genAI
-
-  const 
+  const result = modal.generateContentStream({ contents });
 
   let responseString = "";
 
