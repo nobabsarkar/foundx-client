@@ -2,6 +2,7 @@
 
 import { GoogleGenAI } from "@google/genai";
 
+// implement ai 
 const generateDescription = () => {
   const contents = [
    { role:'user', parts:[
