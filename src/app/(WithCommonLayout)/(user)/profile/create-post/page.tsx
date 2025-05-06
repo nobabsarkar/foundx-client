@@ -29,6 +29,7 @@ import { useUser } from "@/srccontext/user.provider";
 import { useCreatePost } from "@/srchooks/post.hook";
 import Loading from "@/srccomponents/UI/Loading";
 import { useRouter } from "next/navigation";
+import generateDescription from "@/srcservices/ImageDescription";
 
 const cityOptions = allDistict()
   .sort()
@@ -42,6 +43,8 @@ const cityOptions = allDistict()
 const CreatePost = () => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreviews, setImagePreviews] = useState<string[] | []>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const router = useRouter();
 
@@ -114,6 +117,23 @@ const CreatePost = () => {
       };
 
       reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDescriptionGeneration = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await generateDescription(
+        imagePreviews[0],
+        "write a description for social media post describing the given image that starts with 'Found this...'"
+      );
+
+      methods.setValue("description", response);
+      setIsLoading(false);
+    } catch (error: any) {
+      setError(error.message);
+      setIsLoading(false);
     }
   };
 
@@ -195,6 +215,21 @@ const CreatePost = () => {
               <div className="min-w-fit flex-1">
                 <FXTextarea label="Description" name="description" />
               </div>
+            </div>
+
+            <div className="flex justify-end space-x-2">
+              {methods.getValues("description") && (
+                <Button onClick={() => methods.resetField("description")}>
+                  Clear
+                </Button>
+              )}
+              <Button
+                isDisabled={imagePreviews.length > 0 ? false : true}
+                isLoading={isLoading}
+                onClick={() => handleDescriptionGeneration()}
+              >
+                {isLoading ? "Generating..." : "Generate With AI"}
+              </Button>
             </div>
 
             <Divider className="my-5" />
