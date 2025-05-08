@@ -7,12 +7,14 @@ import Link from "next/link";
 import { Avatar } from "@nextui-org/avatar";
 import { useState } from "react";
 
-import { IReceivedClaimRequest } from "@/src/types";
 import ImageGallery from "./ImageGellery";
 
 type TProps = {
-  post: IReceivedClaimRequest;
+  post: any;
 };
+// type TProps = {
+//   post: IReceivedClaimRequest;
+// };
 
 export default function ClaimPostCard({ post }: TProps) {
   const { claimant, item, description } = post || {};
