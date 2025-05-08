@@ -11,6 +11,7 @@ import Image from "next/image";
 
 const Sidebar = () => {
   const { user } = useUser();
+  // console.log(user);
 
   return (
     <div>
