@@ -11,7 +11,6 @@ import Image from "next/image";
 
 const Sidebar = () => {
   const { user } = useUser();
-  // console.log(user);
 
   return (
     <div>
@@ -19,8 +18,8 @@ const Sidebar = () => {
         <div className="h-[330px] w-full rounded-md">
           {/* <h1>Ekhane user er profile picture hobe</h1> */}
           <Image
-            height={100}
-            width={100}
+            height={300}
+            width={300}
             src={user?.profilePhoto || "/default profile photo"}
             alt="profile"
           />
