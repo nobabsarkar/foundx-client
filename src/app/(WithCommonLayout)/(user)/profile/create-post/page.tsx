@@ -23,7 +23,7 @@ import {
 } from "react-hook-form";
 import { useGetCategories } from "@/srchooks/categories.hook";
 import FXTextarea from "@/srccomponents/form/FXTextArea";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { AddIcon, TrashIcon } from "@/srcassets/icons";
 import { useUser } from "@/srccontext/user.provider";
 import { useCreatePost } from "@/srchooks/post.hook";
@@ -137,9 +137,11 @@ const CreatePost = () => {
     }
   };
 
-  if (!createPostPending && isSuccess) {
-    router.push("/");
-  }
+  useEffect(() => {
+    if (!createPostPending && isSuccess) {
+      router.push("/");
+    }
+  }, [createPostPending, isSuccess, router]);
 
   return (
     <>

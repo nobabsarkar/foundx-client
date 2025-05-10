@@ -15,9 +15,9 @@ const Sidebar = () => {
   return (
     <div>
       <div className="rounded-xl bg-default-100 p-2">
-        <div className="h-[330px] w-full rounded-md">
-          {/* <h1>Ekhane user er profile picture hobe</h1> */}
+        <div className=" w-full rounded-md">
           <Image
+            className="w-full"
             height={300}
             width={300}
             src={user?.profilePhoto || "/default profile photo"}
