@@ -44,7 +44,7 @@ const CreatePost = () => {
   const [imageFiles, setImageFiles] = useState<File[] | []>([]);
   const [imagePreviews, setImagePreviews] = useState<string[] | []>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   const router = useRouter();
 
@@ -132,7 +132,7 @@ const CreatePost = () => {
       methods.setValue("description", response);
       setIsLoading(false);
     } catch (error: any) {
-      setError(error.message);
+      // setError(error.message);
       setIsLoading(false);
     }
   };
