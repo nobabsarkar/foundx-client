@@ -2,7 +2,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
+import FXForm from "@/srccomponents/form/FXForm";
 import FXInput from "@/srccomponents/form/FXInput";
+import { useUser } from "@/srccontext/user.provider";
 import { useGetUser } from "@/srchooks/user.hook";
 import { Button } from "@heroui/button";
 
@@ -14,10 +16,20 @@ import {
 } from "react-hook-form";
 
 const SettingPage = () => {
-  const { data } = useGetUser();
-  console.log(data?.data?.name);
+  // const { data } = useGetUser();
+  // const methods = useForm();
 
-  const methods = useForm();
+  const { user, isLoading } = useUser();
+  console.log(user);
+
+  const methods = useForm({
+    defaultValues: {
+      name: user?.name,
+      email: user?.email,
+      phone: user?.mobileNumber,
+    },
+  });
+
   const { handleSubmit } = methods;
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -27,17 +39,17 @@ const SettingPage = () => {
   return (
     <>
       <FormProvider {...methods}>
-        <h1>Settings page</h1>
+        <h1 className="mb-10 text-center">Update Information</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gird-cols-1 lg:grid-cols-2 gap-2">
             <div className="min-w-fit flex-1">
-              <FXInput label="Name" name="name" />
+              <FXInput label="Update Name" name="name" />
             </div>
             <div className="min-w-fit flex-1">
               <FXInput label="Email" name="email" />
             </div>
             <div className="min-w-fit flex-1">
-              <FXInput label="Phone" name="phone" />
+              <FXInput label="Update Phone" name="phone" />
             </div>
             <div className="min-w-fit flex-1">
               <label
