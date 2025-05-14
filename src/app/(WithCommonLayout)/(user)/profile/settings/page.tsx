@@ -20,7 +20,6 @@ const SettingPage = () => {
   // const methods = useForm();
 
   const { user, isLoading } = useUser();
-  console.log(user);
 
   const methods = useForm({
     defaultValues: {
