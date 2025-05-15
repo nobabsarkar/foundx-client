@@ -21,6 +21,7 @@ const SettingPage = () => {
 
   const { user, isLoading } = useUser();
 
+  // default value set
   const methods = useForm({
     defaultValues: {
       name: user?.name,
