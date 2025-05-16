@@ -6,6 +6,7 @@ import FXForm from "@/srccomponents/form/FXForm";
 import FXInput from "@/srccomponents/form/FXInput";
 import { useUser } from "@/srccontext/user.provider";
 import { useGetUser } from "@/srchooks/user.hook";
+
 import { Button } from "@heroui/button";
 
 import {
@@ -16,19 +17,24 @@ import {
 } from "react-hook-form";
 
 const SettingPage = () => {
-  // const { data } = useGetUser();
-  // const methods = useForm();
+  const { data } = useGetUser();
 
-  const { user, isLoading } = useUser();
-
-  // default value set
   const methods = useForm({
     defaultValues: {
-      name: user?.name,
-      email: user?.email,
-      phone: user?.mobileNumber,
+      name: data?.data?.name,
     },
   });
+
+  // const { user, isLoading } = useUser();
+
+  // default value set
+  // const methods = useForm({
+  //   defaultValues: {
+  //     name: user?.name,
+  //     email: user?.email,
+  //     phone: user?.mobileNumber,
+  //   },
+  // });
 
   const { handleSubmit } = methods;
 
@@ -40,7 +46,7 @@ const SettingPage = () => {
     <>
       <FormProvider {...methods}>
         <h1 className="mb-10 text-center">Update Information</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} defaultValue={data?.data}>
           <div className="grid gird-cols-1 lg:grid-cols-2 gap-2">
             <div className="min-w-fit flex-1">
               <FXInput label="Update Name" name="name" />
