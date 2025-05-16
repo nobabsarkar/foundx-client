@@ -8,6 +8,7 @@ import { useUser } from "@/srccontext/user.provider";
 import { useGetUser } from "@/srchooks/user.hook";
 
 import { Button } from "@heroui/button";
+import { useEffect } from "react";
 
 import {
   FieldValues,
@@ -17,36 +18,57 @@ import {
 } from "react-hook-form";
 
 const SettingPage = () => {
-  const { data } = useGetUser();
+  // const { data } = useGetUser();
+  // console.log(data?.data);
 
-  const methods = useForm({
-    defaultValues: {
-      name: data?.data?.name,
-    },
-  });
-
-  // const { user, isLoading } = useUser();
-
-  // default value set
   // const methods = useForm({
   //   defaultValues: {
-  //     name: user?.name,
-  //     email: user?.email,
-  //     phone: user?.mobileNumber,
+  //     name: data?.data?.name,
+  //     email: data?.data?.email,
+  //     phone: data?.data?.mobileNumber,
   //   },
   // });
 
-  const { handleSubmit } = methods;
+  // // const { user, isLoading } = useUser();
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("hello", data);
+  // const { handleSubmit } = methods;
+
+  // const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  //   console.log("hello", data);
+  // };
+
+  const { data } = useGetUser();
+  console.log(data);
+
+  const methods = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+    },
+  });
+
+  const { reset, handleSubmit } = methods;
+
+  useEffect(() => {
+    if (data?.data) {
+      reset({
+        name: data?.data?.name,
+        email: data?.data?.email,
+        phone: data?.data?.mobileNumber,
+      });
+    }
+  }, [data, reset]);
+
+  const onSubmit: SubmitHandler<FieldValues> = (formData) => {
+    console.log("hello", formData);
   };
 
   return (
     <>
       <FormProvider {...methods}>
         <h1 className="mb-10 text-center">Update Information</h1>
-        <form onSubmit={handleSubmit(onSubmit)} defaultValue={data?.data}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gird-cols-1 lg:grid-cols-2 gap-2">
             <div className="min-w-fit flex-1">
               <FXInput label="Update Name" name="name" />

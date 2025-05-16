@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import { getUserData } from "@/srcservices/GetUserData";
 import { useQuery } from "@tanstack/react-query";
 
