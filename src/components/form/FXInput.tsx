@@ -47,7 +47,11 @@ import { useFormContext, Controller } from "react-hook-form";
 
 interface IProps extends IInput {}
 
-// change this full code
+interface IProps extends IInput {
+  readOnly?: boolean;
+  classNames?: any;
+}
+
 const FXInput = ({
   variant = "bordered",
   size = "md",
@@ -55,6 +59,8 @@ const FXInput = ({
   type = "text",
   label,
   name,
+  readOnly = false,
+  classNames = {},
 }: IProps) => {
   const {
     control,
@@ -73,6 +79,8 @@ const FXInput = ({
           required={required}
           type={type}
           label={label}
+          readOnly={readOnly} // ✅ Apply here
+          classNames={classNames}
           errorMessage={errors[name]?.message as string}
           isInvalid={!!errors[name]}
         />

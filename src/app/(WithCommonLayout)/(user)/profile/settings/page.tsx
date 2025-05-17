@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-sort-props */
 /* eslint-disable import/order */
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
@@ -38,7 +39,6 @@ const SettingPage = () => {
   // };
 
   const { data } = useGetUser();
-  console.log(data);
 
   const methods = useForm({
     defaultValues: {
@@ -74,7 +74,15 @@ const SettingPage = () => {
               <FXInput label="Update Name" name="name" />
             </div>
             <div className="min-w-fit flex-1">
-              <FXInput label="Email" name="email" />
+              <FXInput
+                classNames={{
+                  inputWrapper:
+                    "pointer-events-none bg-default-100 cursor-not-allowed",
+                }}
+                label="Email"
+                name="email"
+                readOnly
+              />
             </div>
             <div className="min-w-fit flex-1">
               <FXInput label="Update Phone" name="phone" />
