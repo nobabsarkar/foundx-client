@@ -5,12 +5,13 @@
 
 import FXForm from "@/srccomponents/form/FXForm";
 import FXInput from "@/srccomponents/form/FXInput";
+import Loading from "@/srccomponents/UI/Loading";
 import { useUser } from "@/srccontext/user.provider";
 import { userUpdate } from "@/srchooks/updateUser";
 import { useGetUser } from "@/srchooks/user.hook";
 
 import { Button } from "@heroui/button";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import {
   FieldValues,
@@ -20,7 +21,7 @@ import {
 } from "react-hook-form";
 
 const SettingPage = () => {
-  // const { data } = useGetUser();
+  const { data } = useGetUser();
   // console.log(data?.data);
 
   // const methods = useForm({
@@ -31,7 +32,7 @@ const SettingPage = () => {
   //   },
   // });
 
-  // // const { user, isLoading } = useUser();
+  // const { user, isLoading } = useUser();
 
   // const { handleSubmit } = methods;
 
@@ -39,15 +40,15 @@ const SettingPage = () => {
   //   console.log("hello", data);
   // };
 
-  const { data } = useGetUser();
+  // const { data } = useGetUser();
 
-  const { mutate: updateUserData } = userUpdate();
+  const { mutate: updateUserData, isPending: createUserPending } = userUpdate();
 
   const methods = useForm({
     defaultValues: {
       name: "",
       email: "",
-      phone: "",
+      mobileNumber: "",
     },
   });
 
@@ -58,26 +59,29 @@ const SettingPage = () => {
       reset({
         name: data?.data?.name,
         email: data?.data?.email,
-        phone: data?.data?.mobileNumber,
+        mobileNumber: data?.data?.mobileNumber,
       });
     }
   }, [data, reset]);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const formData = new FormData();
+
     const postData = {
       ...data,
-      // profilePhoto: "",
+      profilePhoto: "",
     };
 
-    updateUserData(postData);
+    formData.append("data", JSON.stringify(postData));
 
-    console.log(postData);
+    updateUserData(formData);
   };
 
   return (
     <>
+      {createUserPending && <Loading />}
       <FormProvider {...methods}>
-        <h1 className="mb-10 text-center">Update Information</h1>
+        <h1 className="mb-10 text-center">Update Your Information</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gird-cols-1 lg:grid-cols-2 gap-2">
             <div className="min-w-fit flex-1">
@@ -95,7 +99,7 @@ const SettingPage = () => {
               />
             </div>
             <div className="min-w-fit flex-1">
-              <FXInput label="Update Phone" name="phone" />
+              <FXInput label="Update Phone" name="mobileNumber" />
             </div>
             <div className="min-w-fit flex-1">
               <label
