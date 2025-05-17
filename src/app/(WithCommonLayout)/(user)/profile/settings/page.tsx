@@ -6,6 +6,7 @@
 import FXForm from "@/srccomponents/form/FXForm";
 import FXInput from "@/srccomponents/form/FXInput";
 import { useUser } from "@/srccontext/user.provider";
+import { userUpdate } from "@/srchooks/updateUser";
 import { useGetUser } from "@/srchooks/user.hook";
 
 import { Button } from "@heroui/button";
@@ -40,6 +41,8 @@ const SettingPage = () => {
 
   const { data } = useGetUser();
 
+  const { mutate: updateUserData } = userUpdate();
+
   const methods = useForm({
     defaultValues: {
       name: "",
@@ -60,8 +63,15 @@ const SettingPage = () => {
     }
   }, [data, reset]);
 
-  const onSubmit: SubmitHandler<FieldValues> = (formData) => {
-    console.log("hello", formData);
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const postData = {
+      ...data,
+      // profilePhoto: "",
+    };
+
+    updateUserData(postData);
+
+    console.log(postData);
   };
 
   return (
