@@ -22,7 +22,6 @@ import {
 
 const SettingPage = () => {
   const { data } = useGetUser();
-  // console.log(data?.data);
 
   // const methods = useForm({
   //   defaultValues: {
