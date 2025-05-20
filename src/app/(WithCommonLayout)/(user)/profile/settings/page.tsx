@@ -76,6 +76,10 @@ const SettingPage = () => {
     updateUserData(formData);
   };
 
+  const handleImageUpload = (e) => {
+    console.log("click", e);
+  };
+
   return (
     <>
       {createUserPending && <Loading />}
@@ -107,7 +111,13 @@ const SettingPage = () => {
               >
                 Upload image
               </label>
-              <input multiple className="hidden" id="image" type="file" />
+              <input
+                onChange={(e) => handleImageUpload(e)}
+                multiple
+                className="hidden"
+                id="image"
+                type="file"
+              />
             </div>
           </div>
           <Button className="mt-3" type="submit">
