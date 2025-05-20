@@ -40,11 +40,7 @@ const NavbarDropdown = () => {
     <div>
       <Dropdown>
         <DropdownTrigger>
-          <Avatar
-            className="cursor-pointer"
-            // name="Joe"
-            src={data?.data?.profilePhoto}
-          />
+          <Avatar className="cursor-pointer" src={data?.data?.profilePhoto} />
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">
           <DropdownItem
