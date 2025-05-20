@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable no-console */
 /* eslint-disable padding-line-between-statements */
@@ -55,6 +56,7 @@ const CreatePost = () => {
   } = useCreatePost();
 
   const { user } = useUser();
+  console.log(user);
 
   const {
     data: categoriesData,

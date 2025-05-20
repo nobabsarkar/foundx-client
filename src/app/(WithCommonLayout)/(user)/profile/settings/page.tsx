@@ -11,7 +11,7 @@ import { userUpdate } from "@/srchooks/updateUser";
 import { useGetUser } from "@/srchooks/user.hook";
 
 import { Button } from "@heroui/button";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import {
   FieldValues,
@@ -23,23 +23,9 @@ import {
 const SettingPage = () => {
   const { data } = useGetUser();
 
-  // const methods = useForm({
-  //   defaultValues: {
-  //     name: data?.data?.name,
-  //     email: data?.data?.email,
-  //     phone: data?.data?.mobileNumber,
-  //   },
-  // });
+  const [imageFiles, setImageFiles] = useState<File[] | []>([]);
 
-  // const { user, isLoading } = useUser();
-
-  // const { handleSubmit } = methods;
-
-  // const onSubmit: SubmitHandler<FieldValues> = (data) => {
-  //   console.log("hello", data);
-  // };
-
-  // const { data } = useGetUser();
+  // const [imagePreviews, setImagePreviews] = useState<string[] | []>([]);
 
   const { mutate: updateUserData, isPending: createUserPending } = userUpdate();
 
@@ -73,11 +59,27 @@ const SettingPage = () => {
 
     formData.append("data", JSON.stringify(postData));
 
+    for (let image of imageFiles) {
+      formData.append("profilePhoto", image);
+    }
+
     updateUserData(formData);
   };
 
-  const handleImageUpload = (e) => {
-    console.log("click", e);
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files![0];
+
+    setImageFiles((prev) => [...prev, file]);
+
+    if (file) {
+      const reader = new FileReader();
+
+      // reader.onload = () => {
+      //   setImagePreviews((prev) => [...prev, reader.result as string]);
+      // };
+
+      reader.readAsDataURL(file);
+    }
   };
 
   return (

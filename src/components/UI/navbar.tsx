@@ -22,7 +22,7 @@ import { useUser } from "@/srccontext/user.provider";
 import { Button } from "@heroui/button";
 
 export const Navbar = () => {
-  const { user, isLoading } = useUser();
+  const { user } = useUser();
 
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">

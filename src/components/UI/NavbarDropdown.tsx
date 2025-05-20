@@ -13,11 +13,15 @@ import { usePathname, useRouter } from "next/navigation";
 import { logout } from "@/srcservices/AuthService";
 import { useUser } from "@/srccontext/user.provider";
 import { protectedRoutes } from "@/srcconstant";
+import { useGetUser } from "@/srchooks/user.hook";
 
 const NavbarDropdown = () => {
   const router = useRouter();
   const pathname = usePathname();
+
   const { user, setIsLoading: userLoading } = useUser();
+
+  const { data } = useGetUser();
 
   const handleNavigation = (pathname: string) => {
     router.push(pathname);
@@ -39,7 +43,7 @@ const NavbarDropdown = () => {
           <Avatar
             className="cursor-pointer"
             // name="Joe"
-            src={user?.profilePhoto}
+            src={data?.data?.profilePhoto}
           />
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">
