@@ -22,7 +22,6 @@ import { useUser } from "@/srccontext/user.provider";
 import { Button } from "@heroui/button";
 
 export const Navbar = () => {
-  // this is user
   const { user } = useUser();
 
   return (
