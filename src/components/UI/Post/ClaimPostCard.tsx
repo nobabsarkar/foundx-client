@@ -12,9 +12,6 @@ import ImageGallery from "./ImageGellery";
 type TProps = {
   post: any;
 };
-// type TProps = {
-//   post: IReceivedClaimRequest;
-// };
 
 export default function ClaimPostCard({ post }: TProps) {
   const { claimant, item, description } = post || {};
