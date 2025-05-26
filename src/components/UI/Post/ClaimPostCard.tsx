@@ -81,8 +81,6 @@ export default function ClaimPostCard({ post }: TProps) {
             />
           </div>
         </div>
-        {/* ); */}
-        {/* })} */}
       </div>
     </div>
   );
