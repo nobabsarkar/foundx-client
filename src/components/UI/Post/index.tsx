@@ -32,6 +32,7 @@ const Post = ({ post }: IProps) => {
 
   const { name, email, profilePhoto } = (user as IUser) || {};
 
+  // only logged in user this is
   const { user: loggedInUser } = useUser();
 
   return (
