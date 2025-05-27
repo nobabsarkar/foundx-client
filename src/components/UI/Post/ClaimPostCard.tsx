@@ -6,8 +6,10 @@ import { Calendar, Eye, MapPin } from "lucide-react";
 import Link from "next/link";
 import { Avatar } from "@nextui-org/avatar";
 import { useState } from "react";
-
 import ImageGallery from "./ImageGellery";
+import { Button } from "@heroui/button";
+import { useDisclosure } from "@heroui/modal";
+import ClaimModal from "@/srcapp/(WithCommonLayout)/(user)/profile/claim-requests/page";
 
 type TProps = {
   post: any;
@@ -15,6 +17,8 @@ type TProps = {
 
 export default function ClaimPostCard({ post }: TProps) {
   const { claimant, item, description } = post || {};
+
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [answers, setAnswers] = useState({});
@@ -73,12 +77,14 @@ export default function ClaimPostCard({ post }: TProps) {
               <p className="text-xs text-default-600">{claimant?.name}</p>
               <p>{description}</p>
             </div>
+
             <Eye
               className="cursor-pointer"
               onClick={() =>
                 handleAnswers({ answers: answers, id: claimant?._id })
               }
             />
+            <Button onPress={onOpen}>Open Modal</Button>
           </div>
         </div>
       </div>
