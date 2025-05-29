@@ -9,7 +9,6 @@ import { useState } from "react";
 import ImageGallery from "./ImageGellery";
 import { Button } from "@heroui/button";
 import { useDisclosure } from "@heroui/modal";
-import ClaimModal from "@/srcapp/(WithCommonLayout)/(user)/profile/claim-requests/page";
 
 type TProps = {
   post: any;
@@ -84,7 +83,6 @@ export default function ClaimPostCard({ post }: TProps) {
                 handleAnswers({ answers: answers, id: claimant?._id })
               }
             />
-            <Button onPress={onOpen}>Open Modal</Button>
           </div>
         </div>
       </div>
