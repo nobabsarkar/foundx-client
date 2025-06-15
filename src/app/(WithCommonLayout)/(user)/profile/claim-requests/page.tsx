@@ -13,8 +13,23 @@ import Image from "next/image";
 import { Card, CardHeader, CardBody } from "@heroui/card";
 import { Divider } from "@nextui-org/react";
 
+// type TProps = {
+//   post: any;
+// };
+
+type TClaimant = {
+  name: string;
+  email: string;
+  mobileNumber: string;
+  profilePhoto: string;
+};
+
+type TPost = {
+  claimant?: TClaimant;
+};
+
 type TProps = {
-  post: any;
+  post: TPost;
 };
 
 const ClaimModal = ({ post }: TProps) => {
@@ -24,7 +39,7 @@ const ClaimModal = ({ post }: TProps) => {
 
   return (
     <>
-      <Button onPress={onOpen}>
+      <Button onPress={onOpen} aria-label="View Claimant Info">
         <Eye className="cursor-pointer" />
       </Button>
 
@@ -51,7 +66,7 @@ const ClaimModal = ({ post }: TProps) => {
                       height={300}
                       alt="Card background"
                       className="object-cover rounded-xl"
-                      src={claimant?.profilePhoto}
+                      src={claimant?.profilePhoto || "/default-profile.jpg"}
                     />
                   </CardBody>
                 </Card>
