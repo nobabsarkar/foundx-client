@@ -17,7 +17,7 @@ export const Logo: React.FC<IconSvgProps> = ({
   >
     <path
       clipRule="evenodd"
-      d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
+      d="https://www.google.com/imgres?q=lost%20and%20found%20svg%20icons&imgurl=https%3A%2F%2Fwww.shutterstock.com%2Fimage-vector%2Flost-found-icon-black-sign-260nw-1650454621.jpg&imgrefurl=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Flost-found-sign&docid=XOGGWTfw-hAWWM&tbnid=Sc3E_d2XcNEhdM&vet=12ahUKEwjgxZ-VjsmNAxXx6KACHU3nALAQM3oECBgQAA..i&w=831&h=280&hcb=2&ved=2ahUKEwjgxZ-VjsmNAxXx6KACHU3nALAQM3oECBgQAA"
       fill="currentColor"
       fillRule="evenodd"
     />

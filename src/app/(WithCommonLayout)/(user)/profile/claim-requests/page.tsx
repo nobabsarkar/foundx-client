@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-sort-props */
 import { Button } from "@heroui/button";
 import {
   Modal,
@@ -7,37 +8,64 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@heroui/modal";
+import { Eye } from "lucide-react";
+import Image from "next/image";
+import { Card, CardHeader, CardBody } from "@heroui/card";
+import { Divider } from "@nextui-org/react";
 
-const ClaimModal = () => {
+type TProps = {
+  post: any;
+};
+
+const ClaimModal = ({ post }: TProps) => {
+  const { claimant } = post || {};
+
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-      <ModalContent>
-        {(onClose) => (
-          <>
-            <ModalHeader className="flex flex-col gap-1">
-              Modal Title
-            </ModalHeader>
-            <ModalBody>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-                pulvinar risus non risus hendrerit venenatis. Pellentesque sit
-                amet hendrerit risus, sed porttitor quam.
-              </p>
-            </ModalBody>
-            <ModalFooter>
-              <Button color="danger" variant="light" onPress={onClose}>
-                Close
-              </Button>
-              <Button color="primary" onPress={onClose}>
-                Action
-              </Button>
-            </ModalFooter>
-          </>
-        )}
-      </ModalContent>
-    </Modal>
+    <>
+      <Button onPress={onOpen}>
+        <Eye className="cursor-pointer" />
+      </Button>
+
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">
+                <h1>Claimant User</h1>
+                <Divider />
+              </ModalHeader>
+              <ModalBody>
+                <Card className="py-4">
+                  <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
+                    <div className="flex items-center space-x-3 justify-between mb-2">
+                      <h1>Name: {claimant?.name}</h1>
+                      <p>Email: {claimant?.email}</p>
+                    </div>
+                    <p className="mb-2">Phone: {claimant?.mobileNumber}</p>
+                  </CardHeader>
+                  <CardBody className="overflow-visible py-2">
+                    <Image
+                      width={400}
+                      height={300}
+                      alt="Card background"
+                      className="object-cover rounded-xl"
+                      src={claimant?.profilePhoto}
+                    />
+                  </CardBody>
+                </Card>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Close
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
 

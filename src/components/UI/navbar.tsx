@@ -20,6 +20,9 @@ import { Logo } from "@/src/components/icons";
 import NavbarDropdown from "./NavbarDropdown";
 import { useUser } from "@/srccontext/user.provider";
 import { Button } from "@heroui/button";
+import Image from "next/image";
+
+import navbarLogo from "../../assets/found.png";
 
 export const Navbar = () => {
   const { user } = useUser();
@@ -29,8 +32,16 @@ export const Navbar = () => {
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
-            <Logo />
-            <p className="font-bold text-inherit">Lost & Found</p>
+            {/* <Logo /> */}
+
+            <Image
+              width={200}
+              height={200}
+              src={navbarLogo}
+              alt="navbar logo"
+            />
+
+            {/* <p className="font-bold text-inherit">Lost & Found</p> */}
           </NextLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start  ml-2">

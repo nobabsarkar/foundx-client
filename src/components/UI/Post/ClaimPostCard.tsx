@@ -1,14 +1,13 @@
-/* eslint-disable import/order */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
+
 import { format } from "date-fns";
-import { Calendar, Eye, MapPin } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 import Link from "next/link";
 import { Avatar } from "@nextui-org/avatar";
-import { useState } from "react";
+
 import ImageGallery from "./ImageGellery";
-import { Button } from "@heroui/button";
-import { useDisclosure } from "@heroui/modal";
+
+import ClaimModal from "@/srcapp/(WithCommonLayout)/(user)/profile/claim-requests/page";
 
 type TProps = {
   post: any;
@@ -17,15 +16,15 @@ type TProps = {
 export default function ClaimPostCard({ post }: TProps) {
   const { claimant, item, description } = post || {};
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  // const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [answers, setAnswers] = useState({});
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [answers, setAnswers] = useState({});
 
-  const handleAnswers = (data: Record<string, any>) => {
-    setAnswers(data);
-    setIsModalOpen(true);
-  };
+  // const handleAnswers = (data: Record<string, any>) => {
+  //   setAnswers(data);
+  //   setIsModalOpen(true);
+  // };
 
   return (
     <div className="mb-2 rounded-md bg-default-100 p-4">
@@ -77,12 +76,13 @@ export default function ClaimPostCard({ post }: TProps) {
               <p>{description}</p>
             </div>
 
-            <Eye
+            {/* <Eye
               className="cursor-pointer"
               onClick={() =>
                 handleAnswers({ answers: answers, id: claimant?._id })
               }
-            />
+            /> */}
+            <ClaimModal post={post} />
           </div>
         </div>
       </div>
