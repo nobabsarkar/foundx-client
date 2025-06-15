@@ -75,7 +75,7 @@ const CreatePost = () => {
       }));
   }
 
-  const methods = useForm();
+  const methods = useForm<FieldValues>();
   const { control, handleSubmit } = methods;
 
   const { fields, append, remove } = useFieldArray({
