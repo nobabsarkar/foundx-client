@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable react/jsx-sort-props */
 import { Button } from "@heroui/button";
 import {
@@ -33,6 +35,8 @@ type TProps = {
 };
 
 const ClaimModal = ({ post }: TProps) => {
+  console.log(post);
+
   const { claimant } = post || {};
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

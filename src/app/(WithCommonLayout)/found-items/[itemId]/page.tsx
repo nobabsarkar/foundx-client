@@ -8,7 +8,7 @@ interface IProps {
   };
 }
 
-const ItemDetailsPage = async ({ params: { itemId } }: IProps) => {
+const ItemDetailsPage = async ({ params: { itemId } }: any) => {
   const { data: post } = await getPost(itemId);
 
   return (
