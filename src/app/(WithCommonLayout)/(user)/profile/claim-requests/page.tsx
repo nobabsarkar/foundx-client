@@ -35,8 +35,6 @@ type TProps = {
 };
 
 const ClaimModal = ({ post }: TProps) => {
-  console.log(post);
-
   const { claimant } = post || {};
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
