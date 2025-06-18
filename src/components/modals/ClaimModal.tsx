@@ -27,17 +27,19 @@ type TClaimant = {
 };
 
 type TPost = {
-  claimant?: TClaimant;
+  claimant: TClaimant;
 };
 
 type TProps = {
   post: TPost;
 };
 
-const ClaimModal = ({ post }: TProps) => {
+const ClaimModal = ({ post }: { post: any }) => {
   const { claimant } = post || {};
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  console.log(post);
 
   return (
     <>

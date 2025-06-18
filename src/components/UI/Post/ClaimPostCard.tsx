@@ -6,8 +6,7 @@ import Link from "next/link";
 import { Avatar } from "@nextui-org/avatar";
 
 import ImageGallery from "./ImageGellery";
-
-import ClaimModal from "@/srcapp/(WithCommonLayout)/(user)/profile/claim-requests/page";
+import ClaimModal from "@/srccomponents/modals/ClaimModal";
 
 type TProps = {
   post: any;
