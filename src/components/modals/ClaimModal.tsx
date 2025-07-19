@@ -39,8 +39,6 @@ const ClaimModal = ({ post }: { post: any }) => {
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  console.log(post);
-
   return (
     <>
       <Button onPress={onOpen} aria-label="View Claimant Info">

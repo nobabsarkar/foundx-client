@@ -56,7 +56,6 @@ const CreatePost = () => {
   } = useCreatePost();
 
   const { user } = useUser();
-  console.log(user);
 
   const {
     data: categoriesData,
