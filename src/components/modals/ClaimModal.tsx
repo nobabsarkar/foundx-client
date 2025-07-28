@@ -15,25 +15,6 @@ import Image from "next/image";
 import { Card, CardHeader, CardBody } from "@heroui/card";
 import { Divider } from "@nextui-org/react";
 
-// type TProps = {
-//   post: any;
-// };
-
-type TClaimant = {
-  name: string;
-  email: string;
-  mobileNumber: string;
-  profilePhoto: string;
-};
-
-type TPost = {
-  claimant: TClaimant;
-};
-
-type TProps = {
-  post: TPost;
-};
-
 const ClaimModal = ({ post }: { post: any }) => {
   const { claimant } = post || {};
 
