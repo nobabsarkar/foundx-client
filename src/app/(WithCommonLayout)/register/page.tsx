@@ -12,6 +12,7 @@ import Link from "next/link";
 import React from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
+// this is register page
 const RegisterPage = () => {
   const { mutate: handleUserRegistration, isPending } = useUserRegistration();
 
