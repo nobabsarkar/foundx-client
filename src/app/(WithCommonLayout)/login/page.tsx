@@ -16,6 +16,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { useUser } from "@/srccontext/user.provider";
 
+// this is login page
 const LoginPage = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
