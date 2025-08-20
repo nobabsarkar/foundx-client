@@ -20,6 +20,7 @@ export default function FXSelect({
 }: IProps) {
   const { register } = useFormContext();
 
+  // select form
   return (
     <Select
       {...register(name)}
